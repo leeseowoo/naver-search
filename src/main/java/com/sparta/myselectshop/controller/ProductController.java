@@ -3,7 +3,6 @@ package com.sparta.myselectshop.controller;
 import com.sparta.myselectshop.dto.ProductMyPriceRequestDto;
 import com.sparta.myselectshop.dto.ProductRequestDto;
 import com.sparta.myselectshop.dto.ProductResponseDto;
-import com.sparta.myselectshop.entity.User;
 import com.sparta.myselectshop.security.UserDetailsImpl;
 import com.sparta.myselectshop.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +35,8 @@ public class ProductController {
             @RequestParam("size") int size,
             @RequestParam("sortBy") String sortBy,
             @RequestParam("isAsc") boolean isAsc,
-            @AuthenticationPrincipal UserDetailsImpl userDetails) {
+            @AuthenticationPrincipal UserDetailsImpl userDetails
+    ) {
         return productService.getProducts(userDetails.getUser(), page - 1, size, sortBy, isAsc);
     }
 
@@ -48,5 +48,17 @@ public class ProductController {
     @PostMapping("/products/{productId}/folder")
     public void addFolder(@PathVariable Long productId, @RequestParam Long folderId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         productService.addFolder(productId, folderId, userDetails.getUser());
+    }
+
+    @GetMapping("/folders/{folderId}/products")
+    public Page<ProductResponseDto> getProductInFolder(
+            @PathVariable Long folderId,
+            @RequestParam("page") int page,
+            @RequestParam("size") int size,
+            @RequestParam("sortBy") String sortBy,
+            @RequestParam("isAsc") boolean isAsc,
+            @AuthenticationPrincipal UserDetailsImpl userDetails
+    ) {
+        return productService.getProductInFolder(folderId, page - 1, size, sortBy, isAsc, userDetails.getUser());
     }
 }
