@@ -4,6 +4,9 @@ import com.sparta.myselectshop.entity.Product;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @NoArgsConstructor
 public class ProductResponseDto {
@@ -14,6 +17,7 @@ public class ProductResponseDto {
     private String image;
     private int lprice;
     private int myPrice;
+    private List<FolderResponseDto> productFolderList = new ArrayList<>();
 
     public ProductResponseDto(Product product) {
         this.id = product.getId();
@@ -22,5 +26,8 @@ public class ProductResponseDto {
         this.image = product.getImage();
         this.lprice = product.getLprice();
         this.myPrice = product.getMyPrice();
+        product.getProductFolderList().forEach(productFolder -> {
+            this.productFolderList.add(new FolderResponseDto(productFolder.getFolder()));
+        });
     }
 }
