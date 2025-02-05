@@ -6,8 +6,6 @@ import com.sparta.myselectshop.dto.ProductResponseDto;
 import com.sparta.myselectshop.entity.Product;
 import com.sparta.myselectshop.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +17,6 @@ import java.util.List;
 public class ProductService {
 
     private static final int MIN_MY_PRICE = 100;
-    private static final Logger log = LoggerFactory.getLogger(ProductService.class);
     private final ProductRepository productRepository;
 
     public ProductResponseDto createProduct(ProductRequestDto requestDto) {
