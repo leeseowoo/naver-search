@@ -3,6 +3,7 @@ package com.sparta.myselectshop.controller;
 import com.sparta.myselectshop.dto.ProductMyPriceRequestDto;
 import com.sparta.myselectshop.dto.ProductRequestDto;
 import com.sparta.myselectshop.dto.ProductResponseDto;
+import com.sparta.myselectshop.entity.User;
 import com.sparta.myselectshop.security.UserDetailsImpl;
 import com.sparta.myselectshop.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -42,5 +43,10 @@ public class ProductController {
     @GetMapping("/admin/products")
     public List<ProductResponseDto> getAllProducts() {
         return productService.getAllProducts();
+    }
+
+    @PostMapping("/products/{productId}/folder")
+    public void addFolder(@PathVariable Long productId, @RequestParam Long folderId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        productService.addFolder(productId, folderId, userDetails.getUser());
     }
 }
