@@ -13,7 +13,7 @@ public class ProductResponseDto {
     private String link;
     private String image;
     private int lprice;
-    private int myprice;
+    private int myPrice;
 
     public ProductResponseDto(Product product) {
         this.id = product.getId();
@@ -21,6 +21,6 @@ public class ProductResponseDto {
         this.link = product.getLink();
         this.image = product.getImage();
         this.lprice = product.getLprice();
-        this.myprice = product.getMyprice();
+        this.myPrice = product.getMyPrice();
     }
 }

@@ -1,5 +1,6 @@
 package com.sparta.myselectshop.entity;
 
+import com.sparta.myselectshop.dto.ProductMyPriceRequestDto;
 import com.sparta.myselectshop.dto.ProductRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -30,12 +31,16 @@ public class Product extends Timestamped {
     private int lprice;
 
     @Column(nullable = false)
-    private int myprice;
+    private int myPrice;
 
     public Product(ProductRequestDto requestDto) {
         this.title = requestDto.getTitle();
         this.image = requestDto.getImage();
         this.link = requestDto.getLink();
         this.lprice = requestDto.getLprice();
+    }
+
+    public void update(ProductMyPriceRequestDto requestDto) {
+        this.myPrice = requestDto.getMyPrice();
     }
 }
