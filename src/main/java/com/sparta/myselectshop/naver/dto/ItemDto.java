@@ -7,6 +7,7 @@ import org.json.JSONObject;
 @Getter
 @NoArgsConstructor
 public class ItemDto {
+
     private String title;
     private String link;
     private String image;
